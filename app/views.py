@@ -19,9 +19,3 @@ def show():
         }
     ]
     return render_template('index.html', title='Home', posts=posts)
-
-
-
-
-
-
