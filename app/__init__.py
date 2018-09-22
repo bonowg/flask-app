@@ -30,6 +30,7 @@ def create_app():
     jwt = JWT(app, authenticate, identity)
     debugtoolbat = DebugToolbarExtension(app)
     login_manager.init_app(app)
+    login_manager.login_view = 'login_page.login_show'
     migrate.init_app(app, db)
     manager.__init__(app)
 
