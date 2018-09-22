@@ -8,7 +8,6 @@ main_page = Blueprint('main_page', __name__, template_folder='templates')
 @main_page.route('/')
 @main_page.route('/index')
 def show():
-    mock_user = {'username': 'Wojtek'}
     posts = [
         {
             'author': {'username': 'John'},
@@ -19,7 +18,7 @@ def show():
             'body': 'The Avengers movie was so cool!'
         }
     ]
-    return render_template('index.html', title='Home', user=mock_user, posts=posts)
+    return render_template('index.html', title='Home', posts=posts)
 
 
 
