@@ -10,6 +10,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_login import LoginManager
 
 from app.mod_user.resources import UserRegister, UserEdit
+from app.mod_user.views import user_profile
 from app.mod_items.resources import Item, Items
 from app.mod_store.resources import Store, StoreList
 from app.security import authenticate, identity
@@ -47,6 +48,7 @@ def create_app():
     app.register_blueprint(login_page)
     app.register_blueprint(logout_page)
     app.register_blueprint(register_page)
+    app.register_blueprint(user_profile)
 
     #create db objects
     @app.before_first_request
