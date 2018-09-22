@@ -1,0 +1,21 @@
+<html>
+        {% block head_content %}{% endblock %}
+    <body>
+        <div>Microblog:
+            <a href="{{ url_for('main_page.show') }}">Home</a>
+            <a href="{{ url_for('items_page.items_show') }}">Items</a>
+            <a href="{{ url_for('login_page.login_show') }}">Log in</a>
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

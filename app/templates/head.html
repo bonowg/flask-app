@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+    <head>
+      {% if title %}
+      <title>{{ title }} - Microblog</title>
+      {% else %}
+      <title>Welcome to Microblog</title>
+      {% endif %}
+    </head>
+{% endblock %}

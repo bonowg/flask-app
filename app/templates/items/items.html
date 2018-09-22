@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if not items %}
+        <div>
+            <p><b>No items found in data base</b></p>
+        </div>
+    {% else %}
+        {% for item in items %}
+            <div>
+                <table border="1">
+                    <tr>
+                        <td>Name</td>
+                        <td>Price</td>
+                        <td>Store Id</td>
+                    </tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.store_id }}</td>
+                </table>
+                <br/>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
