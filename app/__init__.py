@@ -15,7 +15,7 @@ from app.mod_store.resources import Store, StoreList
 from app.security import authenticate, identity
 from app.views import main_page
 from app.mod_items.views import items_page
-from app.mod_auth.views import login_page, logout_page
+from app.mod_auth.views import login_page, logout_page, register_page
 from app.dbase import db
 from app.dbase import login_manager
 from app.mod_manage.manage import migrate, manager
@@ -46,6 +46,7 @@ def create_app():
     app.register_blueprint(items_page)
     app.register_blueprint(login_page)
     app.register_blueprint(logout_page)
+    app.register_blueprint(register_page)
 
     #create db objects
     @app.before_first_request

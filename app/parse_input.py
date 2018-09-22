@@ -19,6 +19,23 @@ class ValueParser(object):
         return parser
 
     @staticmethod
+    def parse_all_for_user():
+        parser = reqparse.RequestParser()
+        parser.add_argument('username',
+                            type=str,
+                            required=True,
+                            help='username field cannot be empty!')
+        parser.add_argument('email',
+                            type=str,
+                            required=True,
+                            help='email field cannot be empty!')
+        parser.add_argument('password',
+                            type=str,
+                            required=True,
+                            help='password field cannot be empty!')
+        return parser
+
+    @staticmethod
     def parse_price():
         parser = reqparse.RequestParser()
         parser.add_argument('price',

@@ -1,6 +1,6 @@
 from flask import Blueprint, flash, redirect, render_template, url_for, request
 from flask_login import current_user, login_user, logout_user
-from app.mod_auth import LoginForm
+from app.mod_auth import LoginForm, RegistrationForm
 from app.mod_user.models import UserModel
 from werkzeug.urls import url_parse
 
@@ -33,3 +33,18 @@ logout_page = Blueprint('logout_page', __name__)
 def logout_do():
     logout_user()
     return redirect(url_for('main_page.show'))
+
+register_page = Blueprint('register_page', __name__, template_folder='templates')
+
+@register_page.route('/registeruser', methods=['GET', 'POST'])
+def make_register():
+    if current_user.is_authenticated:
+        return redirect(url_for('main_page.show'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = UserModel(username=form.username.data, password=form.password.data, email=form.email.data)
+        user.set_password(form.password.data)
+        user.save_to_db()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login_page.login_show'))
+    return render_template('auth/register.html', title='Register', form=form)
