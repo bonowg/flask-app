@@ -4,7 +4,12 @@
         <div>Microblog:
             <a href="{{ url_for('main_page.show') }}">Home</a>
             <a href="{{ url_for('items_page.items_show') }}">Items</a>
-            <a href="{{ url_for('login_page.login_show') }}">Log in</a>
+            {% if current_user.is_anonymous %}
+                <a href="{{ url_for('login_page.login_show') }}">Log in</a>
+            {% else %}
+                <a href="{{ url_for('logout_page.logout_do') }}">Log out</a>
+            {% endif %}
+
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}

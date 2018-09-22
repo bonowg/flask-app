@@ -1,6 +1,7 @@
 import sys
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 class ConectDB(object):
 
@@ -11,6 +12,7 @@ class ConectDB(object):
 
 
 db = SQLAlchemy()
+login_manager = LoginManager()
 
 if __name__ == '__main__':
     sys.exit()
