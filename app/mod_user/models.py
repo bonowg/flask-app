@@ -2,6 +2,8 @@ import sys
 from app.dbase import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from hashlib import md5
+from datetime import datetime
 
 
 class UserModel(UserMixin, db.Model):
@@ -11,6 +13,8 @@ class UserModel(UserMixin, db.Model):
     username = db.Column(db.String(80), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password = db.Column(db.String(100), nullable=False)
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __init__(self, username, password, email):
         self.username = username
@@ -44,6 +48,9 @@ class UserModel(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)
 
 if __name__ == '__main__':
     sys.exit()

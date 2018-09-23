@@ -8,15 +8,13 @@
     {% else %}
         {% for item in items %}
             <div>
-                <table border="1">
+                <table id="customers">
                     <tr>
                         <td>Name</td>
                         <td>Price</td>
                         <td>Store Id</td>
                     </tr>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{ item.store_id }}</td>
+                    {% include 'items/item.html' %}
                 </table>
                 <br/>
             </div>

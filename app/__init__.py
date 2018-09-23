@@ -10,7 +10,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_login import LoginManager
 
 from app.mod_user.resources import UserRegister, UserEdit
-from app.mod_user.views import user_profile
+from app.mod_user.views import user_profile, edit_profile
 from app.mod_items.resources import Item, Items
 from app.mod_store.resources import Store, StoreList
 from app.security import authenticate, identity
@@ -21,6 +21,8 @@ from app.dbase import db
 from app.dbase import login_manager
 from app.mod_manage.manage import migrate, manager
 from flask_migrate import Manager
+from flask_login import current_user
+from datetime import datetime
 
 
 def create_app():
@@ -49,6 +51,7 @@ def create_app():
     app.register_blueprint(logout_page)
     app.register_blueprint(register_page)
     app.register_blueprint(user_profile)
+    app.register_blueprint(edit_profile)
 
     #create db objects
     @app.before_first_request
@@ -59,6 +62,12 @@ def create_app():
     @app.errorhandler(404)
     def not_found(error):
         return render_template('404.html'), 404
+
+    @app.before_request
+    def before_request():
+        if current_user.is_authenticated:
+            current_user.last_seen = datetime.utcnow()
+            db.session.commit()
 
     return app
 
