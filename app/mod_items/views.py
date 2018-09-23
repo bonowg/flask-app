@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
-from app.mod_items import ItemModel
 from flask_login import login_required
+
+from app.mod_items import ItemModel
 
 items_page = Blueprint('items_page', __name__, template_folder='templates')
 

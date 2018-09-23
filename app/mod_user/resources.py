@@ -1,10 +1,11 @@
 import sys
 
-from flask_restful import Resource
-from app.parse_input import ValueParser
-from app.mod_user import UserModel
-from werkzeug.security import generate_password_hash
 from flask_jwt import jwt_required
+from flask_restful import Resource
+from werkzeug.security import generate_password_hash
+
+from app.mod_user import UserModel
+from app.parse_input import ValueParser
 
 
 class UserRegister(Resource):

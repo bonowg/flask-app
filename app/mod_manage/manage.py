@@ -1,5 +1,5 @@
 #!/home/wojtek/Venv/udemy-flask/bin/python
-from flask_migrate import MigrateCommand, migrate, Manager, Migrate
+from flask_migrate import MigrateCommand, Manager, Migrate
 
 migrate = Migrate()
 manager = Manager()

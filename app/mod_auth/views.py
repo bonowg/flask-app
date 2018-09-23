@@ -1,8 +1,9 @@
 from flask import Blueprint, flash, redirect, render_template, url_for, request
 from flask_login import current_user, login_user, logout_user
+from werkzeug.urls import url_parse
+
 from app.mod_auth import LoginForm, RegistrationForm
 from app.mod_user.models import UserModel
-from werkzeug.urls import url_parse
 
 login_page = Blueprint('login_page', __name__, template_folder='templates')
 

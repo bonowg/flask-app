@@ -1,8 +1,9 @@
 import sys
 
-from flask_restful import Resource
-from app.mod_store import StoreModel
 from flask_jwt import jwt_required
+from flask_restful import Resource
+
+from app.mod_store import StoreModel
 
 
 class Store(Resource):

@@ -1,11 +1,11 @@
 import sys
 
-from flask_restful import Resource
-from app.mod_items import ItemModel
-from app.parse_input import ValueParser
 from flask_jwt import jwt_required
+from flask_restful import Resource
 
+from app.mod_items import ItemModel
 from app.mod_store import StoreModel
+from app.parse_input import ValueParser
 
 
 class Item(Resource):

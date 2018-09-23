@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
+
 from app.mod_user import UserModel
 from app.mod_user.forms import EditProfileForm
 

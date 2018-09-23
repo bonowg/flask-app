@@ -1,7 +1,9 @@
-import sys
 import sqlite3
-from flask_sqlalchemy import SQLAlchemy
+import sys
+
 from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+
 
 class ConectDB(object):
 
