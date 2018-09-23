@@ -1,23 +1,26 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block app_content %}
     {% if not items %}
         <div>
             <p><b>No items found in data base</b></p>
         </div>
     {% else %}
-        {% for item in items %}
-            <div>
-                <table id="customers">
+
+        <div>
+            <table class="table table-hover">
                     <tr>
                         <td>Name</td>
                         <td>Price</td>
                         <td>Store Id</td>
                     </tr>
+            {% for item in items %}
+                <tr>
                     {% include 'items/item.html' %}
-                </table>
-                <br/>
-            </div>
-        {% endfor %}
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+
     {% endif %}
 {% endblock %}

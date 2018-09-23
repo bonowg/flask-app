@@ -1,28 +1,52 @@
+{% extends 'bootstrap/base.html' %}
+
 <html>
-        {% block head_content %}{% endblock %}
+    {% block head_content %}{% endblock %}
     <body>
-        <div>Microblog:
-            <a href="{{ url_for('main_page.show') }}">Home</a>
-            <a href="{{ url_for('items_page.items_show') }}">Items</a>
-            {% if current_user.is_anonymous %}
-                <a href="{{ url_for('login_page.login_show') }}">Log in</a>
-            {% else %}
-                <a href="{{ url_for('user_profile.profile_get', username=current_user.username) }}">Profile</a>
+        {% block navbar %}
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ url_for('main_page.show') }}">Microblog</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ url_for('main_page.show') }}">Home</a></li>
+                            <li><a href="{{ url_for('items_page.items_show') }}">Explore</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if current_user.is_anonymous %}
+                            <li><a href="{{ url_for('login_page.login_show') }}">Login</a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('user_profile.profile_get', username=current_user.username) }}">Profile</a></li>
+                            <li><a href="{{ url_for('logout_page.logout_do') }}">Logout</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        {% endblock %}
 
-                <a href="{{ url_for('logout_page.logout_do') }}">Log out</a>
-            {% endif %}
 
-        </div>
-        <hr>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
+        {% block content %}
+            <div class="container">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-info" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                {# application content needs to be provided in the app_content block #}
+                {% block app_content %}{% endblock %}
+            </div>
+        {% endblock %}
     </body>
 </html>
