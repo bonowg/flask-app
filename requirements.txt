@@ -28,3 +28,4 @@ Werkzeug==0.14.1
 wmctrl==0.3
 WTForms==2.2.1
 uwsgi
+psycopg2
