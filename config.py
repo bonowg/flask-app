@@ -8,7 +8,7 @@ class Config(object):
 
     # Define the database - we are working with
     fullpath = os.path.join(basedir, 'data.db')
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + fullpath
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', 'sqlite:///' + fullpath)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
